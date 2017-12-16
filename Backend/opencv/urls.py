@@ -25,7 +25,7 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^test/', views.test),
-    url(r'^name/', views.namelist.as_view()),
+    url(r'^name/', views.match_nose.as_view()),
     url(r'^login/', views.login.as_view()),
     url(r'^register/', views.request_register.as_view()),
     url(r'^reg_cattle/', views.register_animal.as_view()),

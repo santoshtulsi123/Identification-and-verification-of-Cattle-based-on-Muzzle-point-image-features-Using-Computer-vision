@@ -9,7 +9,7 @@ def checkcow(image, img_row=50, img_cols=50):
 
         model = facemodel(img_row, img_cols)
 
-        model.load_weights("C:\\Users\\Devin\\Desktop\\cattle_detection\\opencv_cow\\opencv\\weights.h5")
+        model.load_weights("D:\\MyApplication\\Backend\\opencv\\weights.h5")
 
         image = cv2.resize(image, (img_row, img_cols))
 
