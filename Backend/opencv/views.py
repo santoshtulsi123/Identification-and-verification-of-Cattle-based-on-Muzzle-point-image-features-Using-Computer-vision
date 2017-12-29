@@ -116,15 +116,18 @@ class match_nose(APIView):
         f.write(muzzleimage4)
 
         img = cv2.imread(face_img_path, 0)
+        print("TESNORFLOW")
         pred_results = checkcow(image=img)
         flag = False
-        if str(pred_results["pred"]) == "cow":
+        print(pred_results)
+        #if str(pred_results["pred"]) == "cow":
+        if True:
             # Do the Matching Nose Operation
             muzzle=[muzzle1_img_path,muzzle2_img_path,muzzle3_img_path,muzzle4_img_path]
             result=self.nose(muzzle)
             max = -1
             max_result_match_nose = ""
-            for key, value in result.item():
+            for key, value in result.items():
                 if max < value:
                     max=value
                     if max > 35:
@@ -135,13 +138,16 @@ class match_nose(APIView):
                 name_owner_cattle = max_result_match_nose.split("_")[0]
                 cow_owner_details=user_register_request.objects.get(fname=name_owner_cattle)
                 print(cow_owner_details.fname)
-                #return Response({"result":cow_owner_details})
+                return Response({"result":cow_owner_details.fname})
+            else:
+                return Response("ERROR IMAGE NOT MATCHED")
             #print("Keras..")
 
         else:
             print("Error..")
             return Response({"result":"Cow not found in image"})
             # Send error that given image is not a cow image
+
 
 
 

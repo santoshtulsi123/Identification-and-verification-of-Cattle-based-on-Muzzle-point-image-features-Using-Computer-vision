@@ -17,8 +17,8 @@ def matching_nose(mid, filename):
     # cv2.imshow('test', img2)
     # print(filename, cid)
     flag = 0
-    print(type(img1))
-    print(type(img2))
+    #print(type(img1))
+    #print(type(img2))
 
     # img1 = cv2.imread(filename, 0)  # queryImage
     # img2 = cv2.imread(r'' + str(cid) + '.JPG', 0)  # trainImage
@@ -46,7 +46,7 @@ def matching_nose(mid, filename):
     # Bilateral Filtering
     bilFilter = cv2.bilateralFilter(img1, 9, 75, 75)
     bilFilter1 = cv2.bilateralFilter(img2, 9, 75, 75)
-    print("\nBilateral")
+    #print("\nBilateral")
     flag = matching_sift(bilFilter, bilFilter1)
 
     # Histogram
@@ -78,7 +78,7 @@ def matching_sift(img1, img2):
     # find the keypoints and descriptors with SIFT
     kp1, des1 = sift.detectAndCompute(img1, None)
     kp2, des2 = sift.detectAndCompute(img2, None)
-    print("Image 1: " + str(len(des1)) + "  \t Image 2 : " + str(len(des2)))
+    #print("Image 1: " + str(len(des1)) + "  \t Image 2 : " + str(len(des2)))
     # FLANN parameters
     FLANN_INDEX_KDTREE = 0
     index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
@@ -105,9 +105,9 @@ def matching_sift(img1, img2):
                        singlePointColor=(255, 0, 0),
                        matchesMask=matchesMask,
                        flags=0)
-    print("Matched Points " + str(j))
+    #print("Matched Points " + str(j))
     img3 = cv2.drawMatchesKnn(img1, kp1, img2, kp2, matches, None, **draw_params)
-    print("Result " + str((j / low) * 100))
+    #print("Result " + str((j / low) * 100))
     # plt.imshow(img3, ), plt.show()
     # print(j)
     return (j / low) * 100
